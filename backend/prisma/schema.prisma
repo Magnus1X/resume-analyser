@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Resume {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  filename  String
+  content   String
+  analysis  Json?
+  score     Int?
+  feedback  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
